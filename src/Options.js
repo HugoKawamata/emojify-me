@@ -33,9 +33,9 @@ export default class Options extends React.Component {
         return (
             <div id="options">
                 <label htmlFor="char1">Character 1</label>
-                <input type="text" id="char1" maxLength="3" onChange={this.handleChange} name="char1" /><br/>
+                <input type="text" id="char1" maxLength="3" onChange={this.handleChange} name="char1" value="🛀🏾" /><br/>
                 <label htmlFor="char2">Character 2</label>
-                <input type="text" id="char2" maxLength="3" onChange={this.handleChange} name="char2" /><br/>
+                <input type="text" id="char2" maxLength="3" onChange={this.handleChange} name="char2" value="✊🏿" /><br/>
                 <label htmlFor="text">Text</label>
                 <input type="text" id="text" onChange={this.handleChange} name="text" /><br/>
                 <input type="submit" value="Generate" onClick={() => this.props.generate(this.state.char1, this.state.char2, this.state.text)}/>
