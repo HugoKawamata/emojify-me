@@ -46,7 +46,7 @@ class App extends Component {
 
   splitText(text) {
     let res = text.split(" ")
-    /*
+    
     for (let word = 0; word < res.length; word++){
       if (res[word].length > 4){
         let fourBlocks = [];
@@ -54,12 +54,12 @@ class App extends Component {
           fourBlocks.push(res[word].substring(i, i+4));
         }
         res.splice(word, 1);
-        for (let i = 0; i < fourBlocks.length; i++) {
+        for (let i = fourBlocks.length - 1; i >= 0; i--) {
           res.splice(word, 0, fourBlocks[i]);
         }
       }
     }
-    */
+    
     return res;
   }
 
