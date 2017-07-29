@@ -41,21 +41,50 @@ class App extends Component {
     }
     this.generate = this.generate.bind(this);
     this.convert = this.convert.bind(this);
+    this.splitText = this.splitText.bind(this);
+  }
+
+  splitText(text) {
+    let res = text.split(" ")
+    /*
+    for (let word = 0; word < res.length; word++){
+      if (res[word].length > 4){
+        let fourBlocks = [];
+        for (let i = 0; i < res[word].length; i += 4) {
+          fourBlocks.push(res[word].substring(i, i+4));
+        }
+        res.splice(word, 1);
+        for (let i = 0; i < fourBlocks.length; i++) {
+          res.splice(word, 0, fourBlocks[i]);
+        }
+      }
+    }
+    */
+    return res;
   }
 
   generate(c1, c2, text) {
+    let wordList = this.splitText(text);
     let result = [];
-    for (let rowI = 0; rowI < 5; rowI++){
-      let row = [];
-      row.push(<span key={"row " + rowI + " start"}>{c1}</span>)
+    for (let wordI = 0; wordI < wordList.length; wordI++) {
+      let word = [];
+      word.push(<span key={"word " + wordI + " start"}></span>)
+      
+      for (let rowI = 0; rowI < 5; rowI++){
+        let row = [];
+        row.push(<span key={"row " + rowI + " start"}>{c1}</span>)
 
-      for (let i = 0; i < text.length; i++){
-        row.push(<span key={"row " + rowI + "letter " + (i + 1)}>{this.convert(c1, c2, this.state.letters[text[i]][rowI])}</span>);
-        row.push(<span key={"row " + rowI + "letter " + (i + 1) + " end"}>{c1}</span>);
+        for (let i = 0; i < wordList[wordI].length; i++){
+          console.log("wordlist" + wordI + " row" + rowI + " letter" + i);
+          row.push(<span key={"row " + rowI + "letter " + (i + 1)}>
+            {this.convert(c1, c2, this.state.letters[wordList[wordI][i]][rowI])}
+            </span>);
+          row.push(<span key={"row " + rowI + "letter " + (i + 1) + " end"}>{c1}</span>);
+        }
+        word.push(<div key={"row " + rowI}>{row}</div>)
+
       }
-      row.push(<br key={"row " + rowI + " end" }/>);
-      result.push(row)
-
+      result.push(<div key={"word" + wordI}>{word}</div>)
     }
 
     this.setState({result: result});
