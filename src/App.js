@@ -67,7 +67,9 @@ class App extends Component {
   }
 
   generate(c1, c2, lineLength, text) {
-    console.log(c1 + " " + c2 + ' ' + lineLength + text)
+    if (!Number.isInteger(lineLength)) {
+      this.setState({result: "Please enter a valid line length"})
+    }
     let wordList = this.splitText(lineLength, text);
     let result = [];
     for (let wordI = 0; wordI < wordList.length; wordI++) {
@@ -87,7 +89,10 @@ class App extends Component {
         row.push(<span key={"row " + rowI + " start"}>{c1}</span>);
 
         for (let i = 0; i < wordList[wordI].length; i++){
-          console.log("wordlist" + wordI + " row" + rowI + " letter" + i);
+          if (!wordList[wordI][i].match(/[a-z]/i)) {
+            this.setState({result: (wordList[wordI][i] + " is not a valid character")});
+            return;
+          }
           row.push(<span key={"row " + rowI + "letter " + (i + 1)}>
             {this.convert(c1, c2, this.state.letters[wordList[wordI][i]][rowI])}
             </span>);
