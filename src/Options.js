@@ -6,6 +6,7 @@ export default class Options extends React.Component {
         this.state = {
             char1: "",
             char2: "",
+            lineLength: 4,
             text: "",
 
         }
@@ -20,8 +21,11 @@ export default class Options extends React.Component {
             case "char2":
                 this.setState({char2: event.target.value});
                 break;
+            case "lineLength":
+                this.setState({lineLength: parseInt(event.target.value)});
+                break;
             case "text":
-                this.setState({text: event.target.value});
+                this.setState({text: event.target.value.toUpperCase()});
                 break;
             default:
                 console.log("handleChange got a strange field");
@@ -36,9 +40,11 @@ export default class Options extends React.Component {
                 <input type="text" id="char1" maxLength="3" onChange={this.handleChange} name="char1" /><br/>
                 <label htmlFor="char2">Character 2</label>
                 <input type="text" id="char2" maxLength="3" onChange={this.handleChange} name="char2" /><br/>
+                <label htmlFor="lineLength">Max letters per line (default is 4)</label>
+                <input type="text" id="lineLength" maxLength="1" onChange={this.handleChange} name="lineLength" /><br/>
                 <label htmlFor="text">Text</label>
                 <input type="text" id="text" onChange={this.handleChange} name="text" /><br/>
-                <input type="submit" value="Generate" onClick={() => this.props.generate(this.state.char1, this.state.char2, this.state.text)}/>
+                <input type="submit" value="Generate" onClick={() => this.props.generate(this.state.char1, this.state.char2, this.state.lineLength, this.state.text)}/>
             </div>
         )
     }

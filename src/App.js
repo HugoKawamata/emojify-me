@@ -44,35 +44,46 @@ class App extends Component {
     this.splitText = this.splitText.bind(this);
   }
 
-  splitText(text) {
+  splitText(lineLength, text) {
     let res = text.split(" ")
     
     for (let word = 0; word < res.length; word++){
-      if (res[word].length > 4){
+      if (res[word].length > lineLength){
+        console.log(lineLength + " split")
         let fourBlocks = [];
-        for (let i = 0; i < res[word].length; i += 4) {
-          fourBlocks.push(res[word].substring(i, i+4));
+        for (let i = 0; i < res[word].length; i += lineLength) {
+          fourBlocks.push(res[word].substring(i, i+lineLength));
         }
         res.splice(word, 1);
         for (let i = fourBlocks.length - 1; i >= 0; i--) {
           res.splice(word, 0, fourBlocks[i]);
         }
       }
+      console.log(res[word]);
     }
-    
+
     return res;
   }
 
-  generate(c1, c2, text) {
-    let wordList = this.splitText(text);
+  generate(c1, c2, lineLength, text) {
+    console.log(c1 + " " + c2 + ' ' + lineLength + text)
+    let wordList = this.splitText(lineLength, text);
     let result = [];
     for (let wordI = 0; wordI < wordList.length; wordI++) {
       let word = [];
       word.push(<span key={"word " + wordI + " start"}></span>)
+      let paddingRow = [];
+      paddingRow.push(<span key="padding 0 start">{c1}</span>);
+
+      for (let letter = 0; letter < wordList[wordI].length; letter++) {
+        paddingRow.push(<span key={"padding 0 letter " + letter}>{c1 + c1 + c1 + c1 + c1 + c1}</span>);
+      }
+
+      word.push(<div key={"padding 0 cont"}>{paddingRow}</div>);
       
       for (let rowI = 0; rowI < 5; rowI++){
         let row = [];
-        row.push(<span key={"row " + rowI + " start"}>{c1}</span>)
+        row.push(<span key={"row " + rowI + " start"}>{c1}</span>);
 
         for (let i = 0; i < wordList[wordI].length; i++){
           console.log("wordlist" + wordI + " row" + rowI + " letter" + i);
@@ -82,8 +93,15 @@ class App extends Component {
           row.push(<span key={"row " + rowI + "letter " + (i + 1) + " end"}>{c1}</span>);
         }
         word.push(<div key={"row " + rowI}>{row}</div>)
-
       }
+      paddingRow = [];
+      paddingRow.push(<span key={"padding " + (wordI + 1) +  " start"}>{c1}</span>);
+
+      for (let letter = 0; letter < wordList[wordI].length; letter++) {
+        paddingRow.push(<span key={"padding " + (wordI + 1) + " letter " + letter}>{c1 + c1 + c1 + c1 + c1 + c1}</span>);
+      }
+      word.push(<div key={"padding " + (wordI + 1) + " cont"}>{paddingRow}</div>);
+
       result.push(<div key={"word" + wordI}>{word}</div>)
     }
 
@@ -101,7 +119,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Options generate={(c1, c2, text) => this.generate(c1, c2, text)}/>
+        <Options generate={(c1, c2, lineLength, text) => this.generate(c1, c2, lineLength, text)}/>
         <Result res={this.state.result} />
       </div>
     );
