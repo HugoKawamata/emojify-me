@@ -1,7 +1,59 @@
+.everything-cont {
+  display: flex;
+}
+
+h1 {
+  text-align: center;
+}
+.header {
+  justify-content: center;
+}
+
+#options {
+  margin: auto;
+  width: 50%;
+  background-color: #F8E;
+  padding: 2em;
+  border-radius: 1em;
+  line-height: 1.5em;
+}
+
+#options input {
+  float: right;
+}
+
+.centered {
+  text-align: center;
+}
+
+#options .submit {
+  margin-top: 1em;
+  padding: 0.5em;
+  float:none;
+  font-size: 2em;
+  background-color: #9988ff;
+  border: 0px;
+  border-radius: 15px;
+  border-bottom: 5px solid #6d55ff;
+}
+
+#options .submit:active {
+  border-bottom: 0px solid #fff;
+  border-top: 2px solid #6d55ff;
+  background-color: #836fff;
+  color: #444;
+}
+
+.features-cont {
+  flex-grow: 1;
+}
+
 #result {
+  margin-top: 2em;
   line-height: 1em;
   font-size: 1em;
   font-family: monospace;
+  text-align: center;
 }
 
 #pasta {
@@ -9,8 +61,6 @@
   padding: 2%;
   width: 30%;
   font-size: 1.5em;
-  position: absolute;
-  top: 0px;
 }
 
 #pasta h1:hover {
@@ -18,9 +68,7 @@
 }
 
 .pasta-open {
-  left: 66%;
 }
 
 .pasta-closed {
-  left: 92%;
 }

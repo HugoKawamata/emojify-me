@@ -120,10 +120,18 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Options generate={(c1, c2, lineLength, text) => this.generate(c1, c2, lineLength, text)}/>
-      
-        <Result res={this.state.result} />
-        <Pasta />
+        <div className="everything-cont">
+          <div className="features-cont">
+            <div className="header">
+              <h1>Emojify Me</h1>
+              <Options generate={(c1, c2, lineLength, text) => this.generate(c1, c2, lineLength, text)}/>
+            </div>
+        
+            <Result res={this.state.result} />
+          </div>
+
+          <Pasta />
+        </div>
       </div>
     );
   }

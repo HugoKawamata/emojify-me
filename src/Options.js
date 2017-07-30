@@ -36,15 +36,17 @@ export default class Options extends React.Component {
     render() {
         return (
             <div id="options">
-                <label htmlFor="char1">Character 1</label>
+                <label htmlFor="char1">Background Emoji</label>
                 <input type="text" id="char1" maxLength="3" onChange={this.handleChange} name="char1" /><br/>
-                <label htmlFor="char2">Character 2</label>
+                <label htmlFor="char2">Letter Emoji</label>
                 <input type="text" id="char2" maxLength="3" onChange={this.handleChange} name="char2" /><br/>
-                <label htmlFor="lineLength">Max letters per line (default is 4)</label>
+                <label htmlFor="lineLength">Max letters per line (default is 4) </label>
                 <input type="text" id="lineLength" maxLength="1" onChange={this.handleChange} name="lineLength" /><br/>
                 <label htmlFor="text">Text</label>
                 <input type="text" id="text" onChange={this.handleChange} name="text" /><br/>
-                <input type="submit" value="Generate" onClick={() => this.props.generate(this.state.char1, this.state.char2, this.state.lineLength, this.state.text)}/>
+                <div className="centered">
+                    <input className="submit" type="submit" value="Generate" onClick={() => this.props.generate(this.state.char1, this.state.char2, this.state.lineLength, this.state.text)}/>
+                </div>
             </div>
         )
     }
