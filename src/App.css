@@ -1,4 +1,26 @@
 #result {
   line-height: 1em;
   font-size: 1em;
+  font-family: monospace;
+}
+
+#pasta {
+  background-color: #F8E7DF;
+  padding: 2%;
+  width: 30%;
+  font-size: 1.5em;
+  position: absolute;
+  top: 0px;
+}
+
+#pasta h1:hover {
+  color: #4466ff;
+}
+
+.pasta-open {
+  left: 66%;
+}
+
+.pasta-closed {
+  left: 92%;
 }

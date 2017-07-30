@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import Result from "./Result";
 import Options from "./Options";
+import Pasta from "./Pasta";
 import './App.css';
 
 class App extends Component {
@@ -120,7 +121,9 @@ class App extends Component {
     return (
       <div className="App">
         <Options generate={(c1, c2, lineLength, text) => this.generate(c1, c2, lineLength, text)}/>
+      
         <Result res={this.state.result} />
+        <Pasta />
       </div>
     );
   }
